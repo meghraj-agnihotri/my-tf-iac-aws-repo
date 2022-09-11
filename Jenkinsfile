@@ -2,9 +2,15 @@ pipeline {
     agent any
     
     tools {
-        terraform 'terraform'
+        terraform ('terraform')
+     
     }
-
+    environment {
+        TF_HOME = tool('terraform')
+        ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
+        SECRET_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+    }
+    
     stages {
         stage ('checkout from GitHub') {
             steps {
