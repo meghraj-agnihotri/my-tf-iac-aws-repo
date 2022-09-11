@@ -1,6 +1,8 @@
 provider "aws" {
   region = var.aws_region
-  shared_credentials_file = "Users/Isha/.aws/credentials"
+  access_key = "AKIAXZ7XCCPEMO7X3FJD"
+  secret_key = "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"
+  
 }
 
 #Create security group with firewall rules
