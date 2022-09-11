@@ -11,7 +11,7 @@ pipeline {
         PATH = "TF_HOME:$PATH"
         ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
         SECRET_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-    
+    }
 
     stages {
        stage ('checkout from GitHub') {
