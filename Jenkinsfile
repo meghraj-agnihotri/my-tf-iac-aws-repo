@@ -2,15 +2,15 @@ pipeline {
     agent any
     
     tools {
-        terraform ('terraform')
-     
+        terraform 'terraform'
     }
-    environment {
+    
+	environment {
         TF_HOME = tool('terraform')
         ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
         SECRET_KEY = credentials('AWS_SECRET_ACCESS_KEY')
     }
-    
+
     stages {
         stage ('checkout from GitHub') {
             steps {
@@ -24,6 +24,17 @@ pipeline {
             }
         }
         
+        stage ("terraform format") {
+            steps {
+                sh 'terraform fmt'
+            }
+        }
         
+        stage ("terraform Action") {
+            steps {
+                echo 'terraform action from the parameter is --> ${action}'
+                sh 'terraform ${action} --auto-approve'
+            }
+        }    
     }
 }
