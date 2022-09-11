@@ -5,10 +5,9 @@ pipeline {
         terraform 'terraform'
     }
     
-	environment {
-        TF_HOME = tool('terraform')
-        ACCESS_KEY = credentials('AWS_ACCESS_KEY_ID')
-        SECRET_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+    environment {
+        credentials = "AWS_ACCESS_KEY_ID"
+        credentials = "AWS_SECRET_ACCESS_KEY"
     }
 
     stages {
@@ -18,19 +17,19 @@ pipeline {
             }
         }
         
-        stage ("terraform init") {
-            steps {
+      stage ("terraform init") {
+           steps {
                 sh 'terraform init'
             }
         }
         
-        stage ("terraform format") {
+      stage ("terraform format") {
             steps {
                 sh 'terraform fmt'
             }
         }
         
-        stage ("terraform Action") {
+       stage ("terraform Action") {
             steps {
                 echo 'terraform action from the parameter is --> ${action}'
                 sh 'terraform ${action} --auto-approve'
