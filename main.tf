@@ -1,8 +1,5 @@
 provider "aws" {
   region = var.aws_region
-  access_key = "AKIAXZ7XCCPEMO7X3FJD"
-  secret_key = "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"
-  
 }
 
 #Create security group with firewall rules
@@ -38,7 +35,7 @@ resource "aws_security_group" "my_security_group" {
 }
 
 # Create AWS ec2 instance
-resource "aws_instance" "myFirstInstance" {
+resource "aws_instance" "myInstance" {
   ami           = var.ami_id
   key_name = var.key_name
   instance_type = var.instance_type
